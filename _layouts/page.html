@@ -1,0 +1,86 @@
+---
+layout: default
+---
+
+  <main class="container">
+
+    <!-- Présentation de la Commune -->
+    <section class="hero-commune">
+      <h1>{{ page.title }} - {{ page.departement }}</h1>
+      <p>{{ page.intro }}</p>
+    </section>
+
+    {% include map.html %}
+
+    {% assign nombre_etapes = page.etapes | size %}
+
+{% for etape in page.etapes %}
+    <!-- Étape {{ forloop.index }} - {{ etape.titre }} -->
+    <article class="step-card" id="etape-{{ forloop.index }}">
+      <header class="step-header">
+        <span class="step-tag">Étape {{ forloop.index }} sur {{ nombre_etapes }} — {{ etape.categorie }}</span>
+        <h2 class="step-title">{{ etape.name }}</h2>
+      </header>
+
+      <div class="step-media">
+        <img src="/img/{{ etape.image }}" alt="{{ etape.alt }}" class="step-image">
+      </div>
+      <div class="image-caption">
+        {{ etape.alt }}
+      </div>
+
+      <div class="audio-player-wrapper">
+        <label for="audio-1">Écouter la création sonore</label>
+        <audio id="audio-1" controls preload="metadata">
+          <source src="/audio/{{ etape.audio }}" type="audio/mpeg">
+          Votre navigateur ne supporte pas le lecteur audio.
+        </audio>
+      </div>
+
+      <div class="step-content">
+        <p class="step-text">
+          {{ etape.text }}
+        </p>
+      </div>
+      {% if page.etapes.size > 1 %}
+
+        {% assign previous_link_num = forloop.index0 %}
+        {% assign previous_link_idx = forloop.index0 | minus : 1 %}
+
+        {% assign next_link_num = forloop.index | plus : 1 %}
+        {% assign next_link_idx = forloop.index %}
+
+        {% if forloop.first %}
+          <footer class="step-pagination">
+            <span></span>
+            <a href="#etape-{{ next_link_num }}">Étape {{ next_link_idx | plus : 1 }} : {{ page.etapes[next_link_idx].titre }} &rarr;</a>
+          </footer>
+        {% elsif forloop.last %}
+          <footer class="step-pagination">
+            <a href="#etape-{{ previous_link_num }}"> &larr; Étape {{ previous_link_idx | plus : 1 }} : {{ page.etapes[previous_link_idx].titre }}</a>
+            <span></span>
+          </footer>
+        {% else %}
+          <footer class="step-pagination">
+            <a href="#etape-{{ previous_link_num }}">&larr; Étape {{ previous_link_idx | plus : 1 }} : {{ page.etapes[previous_link_idx].titre }} </a>
+            <a href="#etape-{{ next_link_num }}">Étape {{ next_link_idx | plus : 1 }} : {{ page.etapes[next_link_idx].titre }} &rarr;</a>
+          </footer>
+        {% endif %}
+      {% endif %}
+    </article>
+{% endfor %}
+
+    <!-- Section Démarche artistique -->
+    <section class="parcours-section" id="demarche" style="background: transparent; border: none; padding: 0;">
+      <h2 style="font-family: var(--font-serif); font-size: 1.4rem; color: var(--text-main); margin-bottom: 0.5rem;">À propos du projet</h2>
+      <p class="step-text">
+        <strong>Écoutons voir</strong> est une démarche de création artistique de territoire portée par la Compagnie Préface.
+        À {{ page.title }}, habitants et artistes ont associé leurs voix et leurs photographies pour faire émerger la mémoire vivante de la commune.
+      </p>
+    </section>
+
+  </main>
+
+<!-- Script OpenStreetMap (Leaflet JS) -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="/assets/scripts.js"></script>

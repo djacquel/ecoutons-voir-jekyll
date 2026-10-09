@@ -1,0 +1,23 @@
+   <!-- Carte Interactive OpenStreetMap & Géolocalisation -->
+    <section class="parcours-section" id="carte-section">
+      <h2>Carte du parcours sonore</h2>
+      <p class="sub-title">Cliquez sur un marqueur de la carte ou sur un nom d'étape ci-dessous pour y accéder directement.</p>
+
+      <!-- Message d'alerte en cas de refus de la géolocalisation -->
+      <div id="geolocAlert" class="geoloc-alert">
+        <span>Votre expérience sera meilleure avec la géolocalisation activée</span>
+        <button id="retryGeolocBtn" class="geoloc-btn">Activer la géolocalisation</button>
+      </div>
+
+      <!-- Carte OpenStreetMap -->
+      <div id="map"></div>
+
+      <!-- Liste des étapes -->
+      <div class="steps-grid-nav">
+        {% for etape in page.etapes %}
+        <a href="#etape-{{ forloop.index }}" class="step-badge">
+          <span class="step-number">{{ forloop.index }}</span>{{ etape.titre }}
+        </a>
+        {% endfor %}
+      </div>
+    </section>
