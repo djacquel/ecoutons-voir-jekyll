@@ -1,9 +1,9 @@
 
     // 1. Initialisation de la carte centrée sur Sarrey (Haute-Marne)
-    const latSarrey = 48.0034;
-    const lngSarrey = 5.427;
+    const lat = 48.0034;
+    const lon = 5.427;
     
-    const map = L.map('map').setView([latSarrey, lngSarrey], 15);
+    const map = L.map('map').setView([lat, lon], 15);
 
     // 2. Fond de carte OpenStreetMap
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
