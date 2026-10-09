@@ -11,7 +11,7 @@
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    // 3. Données des 6 étapes
+    // 3. Données des étapes
     const etapes = [
       { id: "etape-1", number: 1, title: "Sarrey : L'origine du nom", lat: 48.0056, lng: 5.4384 },
       { id: "etape-2", number: 2, title: "La coutellerie", lat: 48.0031, lng: 5.429 },

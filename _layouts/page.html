@@ -1,9 +1,6 @@
 ---
 layout: default
 ---
-
-  <main class="container">
-
     <!-- Présentation de la Commune -->
     <section class="hero-commune">
       <h1>{{ page.title }} - {{ page.departement }}</h1>
@@ -14,7 +11,7 @@ layout: default
 
     {% assign nombre_etapes = page.etapes | size %}
 
-{% for etape in page.etapes %}
+    {% for etape in page.etapes %}
     <!-- Étape {{ forloop.index }} - {{ etape.titre }} -->
     <article class="step-card" id="etape-{{ forloop.index }}">
       <header class="step-header">
@@ -68,7 +65,7 @@ layout: default
         {% endif %}
       {% endif %}
     </article>
-{% endfor %}
+    {% endfor %}
 
     <!-- Section Démarche artistique -->
     <section class="parcours-section" id="demarche" style="background: transparent; border: none; padding: 0;">
@@ -79,7 +76,9 @@ layout: default
       </p>
     </section>
 
-  </main>
+        <h3>Accès direct</h3>
+        <p>Scannez le QR code au centre du village pour profiter de l'écoute in situ.</p>
+
 
 <!-- Script OpenStreetMap (Leaflet JS) -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>

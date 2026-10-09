@@ -2,12 +2,17 @@
 layout: default
 ---
 
-<div class="home">
-  {%- if page.title -%}
-    <h1 class="page-heading">{{ page.title }}</h1>
-  {%- endif -%}
+<main class="container">
 
-  {{ content }}
+    <h1 class="page-heading">{{ site.title }}</h1>
 
+    <h2>Liste des balades</h2>
+<ul>
+{% for page in site.pages %}
+{% if page.path contains "balades" %}
+<li><a href="{{ page.url }}">{{ page.title }}</a></li>
+{% endif %}
+{% endfor %}
+</ul>
 
-</div>
+</main>

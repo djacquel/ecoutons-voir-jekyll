@@ -27,8 +27,8 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 timezone: Europe/Paris
 
-twitter_username: jekyllrb
-github_username:  jekyll
+facebook_username: preface
+github_username: preface
 
 # Build settings
 # theme: minima
@@ -43,7 +43,7 @@ kramdown:
 
 defaults:
   - scope:
-      path: "pages"
+      path: "balades"
     values:
       lang: fr
       layout: page
