@@ -3,7 +3,7 @@ layout: default
 ---
 
     {% assign pageRoot = "/balades/" | append: page.slug | append: "/"  %}
-    
+    <h1>page.slug : {{ page.slug }} </h1>
     <!-- Présentation de la Commune -->
     <section class="hero-commune">
       <h1>{{ page.title }} - {{ page.departement }}</h1>
@@ -85,3 +85,14 @@ layout: default
 <!-- Script OpenStreetMap (Leaflet JS) -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="/assets/scripts.js"></script>
+
+<script>
+      // fonctionnement hors ligne
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('{{ pageRoot }}sw.js')
+          .then(reg => console.log('Parcours disponible hors-ligne !'))
+          .catch(err => console.log('Erreur Service Worker', err));
+      });
+    }
+</script>

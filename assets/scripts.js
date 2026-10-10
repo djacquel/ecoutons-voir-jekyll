@@ -88,17 +88,6 @@
       requestGeoloc();
     });
 
-    // fonctionnement hors ligne
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .then(reg => console.log('Parcours disponible hors-ligne !'))
-          .catch(err => console.log('Erreur Service Worker', err));
-      });
-    }
-
-
-
 
 /*
 if ("geolocation" in navigator) {
