@@ -1,6 +1,9 @@
 ---
 layout: default
 ---
+
+    {% assign pageRoot = "/balades/" | append: page.slug | append: "/"  %}
+    
     <!-- Présentation de la Commune -->
     <section class="hero-commune">
       <h1>{{ page.title }} - {{ page.departement }}</h1>
@@ -20,7 +23,7 @@ layout: default
       </header>
 
       <div class="step-media">
-        <img src="/img/{{ etape.image }}" alt="{{ etape.alt }}" class="step-image">
+        <img src="{{ pageRoot }}/img/{{ etape.image }}" alt="{{ etape.alt }}" class="step-image">
       </div>
       <div class="image-caption">
         {{ etape.alt }}
@@ -29,7 +32,7 @@ layout: default
       <div class="audio-player-wrapper">
         <label for="audio-1">Écouter la création sonore</label>
         <audio id="audio-1" controls preload="metadata">
-          <source src="/audio/{{ etape.audio }}" type="audio/mpeg">
+          <source src="{{ pageRoot }}/audio/{{ etape.audio }}" type="audio/mpeg">
           Votre navigateur ne supporte pas le lecteur audio.
         </audio>
       </div>
