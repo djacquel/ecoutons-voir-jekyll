@@ -1,20 +1,13 @@
 
     const map = L.map('map').setView([lat, lon], originalZoom);
 
-    // 2. Fond de carte OpenStreetMap
+    // Fond de carte OpenStreetMap
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
+      maxZoom: maximumZoom,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    // 3. Données des étapes
-    const etapes = [
-      { id: "etape-1", number: 1, title: "Sarrey : L'origine du nom", lat: 48.0056, lng: 5.4384 },
-      { id: "etape-2", number: 2, title: "La coutellerie", lat: 48.0031, lng: 5.429 },
-      { id: "etape-3", number: 3, title: "Le cerisier de Jeanne", lat: 48.0051, lng: 5.4246 }
-    ];
-
-    // 4. Ajout des marqueurs des étapes
+    // Ajout des marqueurs des étapes
     etapes.forEach(etape => {
       const customIcon = L.divIcon({
         className: 'custom-leaflet-marker',
@@ -94,6 +87,18 @@
     retryGeolocBtn.addEventListener('click', () => {
       requestGeoloc();
     });
+
+    // fonctionnement hors ligne
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Parcours disponible hors-ligne !'))
+          .catch(err => console.log('Erreur Service Worker', err));
+      });
+    }
+
+
+
 
 /*
 if ("geolocation" in navigator) {
