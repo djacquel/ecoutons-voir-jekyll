@@ -1,6 +1,9 @@
 ---
 layout: default
 ---
+
+    {% assign pageRoot = "/balades/" | append: page.slug | append: "/"  %}
+    <h1>page.slug : {{ page.slug }} </h1>
     <!-- Présentation de la Commune -->
     <section class="hero-commune">
       <h1>{{ page.title }} - {{ page.departement }}</h1>
@@ -20,7 +23,7 @@ layout: default
       </header>
 
       <div class="step-media">
-        <img src="/img/{{ etape.image }}" alt="{{ etape.alt }}" class="step-image">
+        <img src="{{ pageRoot }}/img/{{ etape.image }}" alt="{{ etape.alt }}" class="step-image">
       </div>
       <div class="image-caption">
         {{ etape.alt }}
@@ -29,7 +32,7 @@ layout: default
       <div class="audio-player-wrapper">
         <label for="audio-1">Écouter la création sonore</label>
         <audio id="audio-1" controls preload="metadata">
-          <source src="/audio/{{ etape.audio }}" type="audio/mpeg">
+          <source src="{{ pageRoot }}/audio/{{ etape.audio }}" type="audio/mpeg">
           Votre navigateur ne supporte pas le lecteur audio.
         </audio>
       </div>
@@ -79,7 +82,17 @@ layout: default
         <h3>Accès direct</h3>
         <p>Scannez le QR code au centre du village pour profiter de l'écoute in situ.</p>
 
-
 <!-- Script OpenStreetMap (Leaflet JS) -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="/assets/scripts.js"></script>
+
+<script>
+      // fonctionnement hors ligne
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('{{ pageRoot }}sw.js')
+          .then(reg => console.log('Parcours disponible hors-ligne !'))
+          .catch(err => console.log('Erreur Service Worker', err));
+      });
+    }
+</script>
