@@ -26,6 +26,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 timezone: Europe/Paris
+locale: fr_FR
 
 facebook_username: preface
 github_username: preface
@@ -47,6 +48,7 @@ defaults:
     values:
       lang: fr
       layout: page
+
 
 # Exclude from processing.
 # The following items will not be processed, by default.

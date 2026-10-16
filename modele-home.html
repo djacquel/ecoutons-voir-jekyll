@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Écoutons voir — Parcours artistiques de territoire</title>
+  <link rel="stylesheet" href="/assets/style.css">
+<!--   <style>
+    /* ==========================================
+       1. VARIABLES ET STYLES DE BASE
+       ========================================== */
+    :root {
+      --bg-color: #faf8f5;
+      --card-bg: #ffffff;
+      --text-main: #2c302e;
+      --text-muted: #626864;
+      --accent-color: #2e5a44;
+      --accent-hover: #1e3c2d;
+      --border-color: #e5e0d8;
+      --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-serif: Georgia, "Times New Roman", serif;
+      --radius: 8px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* ==========================================
+       2. EN-TÊTE ET NAVIGATION
+       ========================================== */
+    .header {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 1rem 1.5rem;
+    }
+
+    .header-container {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent-color);
+    }
+
+    .brand-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-color);
+    }
+
+    /* ==========================================
+       3. HERO BANNER
+       ========================================== */
+    .hero {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: 2.4rem;
+      font-weight: normal;
+      margin-bottom: 0.8rem;
+      color: var(--text-main);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 1.5rem auto;
+    }
+
+    /* Banner Géolocalisation */
+    .geoloc-alert {
+      display: none;
+      background-color: #fef3c7;
+      border: 1px solid #f59e0b;
+      color: #92400e;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      font-size: 0.88rem;
+      margin: 0 auto 2rem auto;
+      max-width: 680px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .geoloc-btn {
+      background-color: #d97706;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .geoloc-btn:hover {
+      background-color: #b45309;
+    }
+
+    /* ==========================================
+       4. SECTIONS & GRILLES (VILLAGES / NEWS)
+       ========================================== */
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      color: var(--accent-color);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-block {
+      margin-bottom: 3.5rem;
+    }
+
+    /* Grille des Villages */
+    .village-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .village-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .village-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    }
+
+    .village-media {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      background-color: #1a1a1a;
+      overflow: hidden;
+    }
+
+    .village-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .village-content {
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .village-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-color);
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .village-title {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .village-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+
+    .btn-link {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-color);
+    }
+
+    .btn-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Grille de la Rubrique News */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .news-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .news-date {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .news-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .news-excerpt {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    /* ==========================================
+       5. FOOTER & RÉSEAUX SOCIAUX
+       ========================================== */
+    .footer {
+      border-top: 1px solid var(--border-color);
+      background: var(--card-bg);
+      padding: 2.5rem 1.5rem;
+      margin-top: 4rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .footer-container {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .footer-info h3 {
+      color: var(--accent-color);
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 0.6rem;
+    }
+
+    .social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      background-color: var(--bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      color: var(--accent-color);
+      transition: background-color 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .social-icon:hover {
+      background-color: var(--accent-color);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .social-icon svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.8rem; }
+      .header-container { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    }
+  </style> -->
+</head>
+<body>
+
+  <!-- En-tête -->
+  <header class="header">
+    <div class="header-container">
+      <div>
+        <a href="#" class="brand-title">Écoutons voir</a>
+        <span class="brand-subtitle">Projet artistique &amp; sonore de territoire</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#villages">Villages</a>
+        <a href="#news">Actualités</a>
+        <a href="#demarche">La Démarche</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Hero / Présentation -->
+    <section class="hero">
+      <h1>Un territoire à écouter, des histoires à entendre</h1>
+      <p>Découvrez les parcours sonores et photographiques nés de la rencontre entre les habitants et la Compagnie Préface.</p>
+    </section>
+
+    <!-- Section 1 : Catalogue des Villages -->
+    <section class="section-block" id="villages">
+      <h2 class="section-title">Parcours par commune</h2>
+      
+      <div class="village-grid">
+        
+        <!-- Carte Sarrey -->
+        <article class="village-card">
+          <div class="village-media">
+            <img 
+              src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=75" 
+              srcset="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=480&q=75 480w,
+                      https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=75 800w"
+              sizes="(max-width: 600px) 100vw, 300px"
+              alt="Sarrey - Haute-Marne" 
+              class="village-image"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="450">
+          </div>
+          <div class="village-content">
+            <span class="village-tag">7 Étapes • Haute-Marne</span>
+            <h3 class="village-title">Sarrey</h3>
+            <p class="village-desc">Des histoires d'eau, le grand lavoir, la coutellerie du Bassigny et les mots improvisés de David Jacquel.</p>
+            <a href="sarrey.html" class="btn-link">Explorer le parcours &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Carte Auberive -->
+        <article class="village-card">
+          <div class="village-media">
+            <img 
+              src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=75" 
+              srcset="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=480&q=75 480w,
+                      https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=75 800w"
+              sizes="(max-width: 600px) 100vw, 300px"
+              alt="Auberive - Haute-Marne" 
+              class="village-image"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="450">
+          </div>
+          <div class="village-content">
+            <span class="village-tag">6 Étapes • Parc National des Forêts</span>
+            <h3 class="village-title">Auberive</h3>
+            <p class="village-desc">Autour de l'Abbaye cistercienne, des bords de l'Aube et du murmure des grands massifs forestiers.</p>
+            <a href="auberive.html" class="btn-link">Explorer le parcours &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Carte Commune à venir (Gabarit) -->
+        <article class="village-card" style="opacity: 0.85;">
+          <div class="village-media">
+            <img 
+              src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=75" 
+              alt="Commune en création" 
+              class="village-image"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="450">
+          </div>
+          <div class="village-content">
+            <span class="village-tag">En création</span>
+            <h3 class="village-title">Nouvelle Commune</h3>
+            <p class="village-desc">Collecte de témoignages et ateliers photographiques en cours avec les habitants.</p>
+            <span style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">Lancement prochain</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Section 2 : Rubrique News / Actualités -->
+    <section class="section-block" id="news">
+      <h2 class="section-title">Actualités &amp; Carnet de bord</h2>
+      
+      <div class="news-grid">
+        
+        <article class="news-card">
+          <span class="news-date">24 Octobre 2026</span>
+          <h3 class="news-title">Inauguration du parcours sonore de Sarrey</h3>
+          <p class="news-excerpt">Rendez-vous en mairie pour une déambulation collective inaugurale suivie d'une écoute sous le préau du lavoir.</p>
+          <a href="#" class="btn-link">Lire l'article &rarr;</a>
+        </article>
+
+        <article class="news-card">
+          <span class="news-date">12 Septembre 2026</span>
+          <h3 class="news-title">Retour sur les ateliers photo à Auberive</h3>
+          <p class="news-excerpt">Pendant trois semaines, les résidents ont arpenté les ruelles et forêts pour capturer le patrimoine sensible de la commune.</p>
+          <a href="#" class="btn-link">Lire l'article &rarr;</a>
+        </article>
+
+        <article class="news-card">
+          <span class="news-date">02 Juin 2026</span>
+          <h3 class="news-title">Appel à témoignages &amp; mémoire coutelière</h3>
+          <p class="news-excerpt">La Compagnie Préface recueille souvenirs et anecdotes sur le travail de la coutellerie à domicile dans le Bassigny.</p>
+          <a href="#" class="btn-link">Lire l'article &rarr;</a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Section 3 : La Démarche -->
+    <section class="section-block" id="demarche">
+      <h2 class="section-title">La démarche « Écoutons voir »</h2>
+      <p style="margin-bottom: 1rem;">
+        <strong>Écoutons voir</strong> n'est pas un audioguide touristique traditionnel. C'est une démarche d'action artistique de territoire. La Compagnie Préface travaille en immersion dans les communes pour faire émerger la mémoire vivante, les lieux oubliés et les regards singuliers qui façonnent une identité locale.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- Pied de page -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-info">
+        <h3>Écoutons voir</h3>
+        <p>Un projet artistique porté par la Compagnie Préface[cite: 1, 3].</p>
+        <p>Création sonore, littéraire et photographique de territoire[cite: 1].</p>
+      </div>
+
+      <div class="footer-info">
+        <h3>Suivre la Compagnie</h3>
+        <p>Découvrez les coulisses des créations[cite: 1] :</p>
+        <div class="social-links">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.583 9 4.615V8z"/></svg>
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+          </a>
+          <a href="https://soundcloud.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="SoundCloud">
+            <svg viewBox="0 0 24 24"><path d="M1.175 12.225c-.053 0-.097.042-.102.096l-.351 3.754.351 3.708c.005.054.049.096.102.096h.013l.488-.508v-6.541l-.488-.605zm1.282-1.385c-.063 0-.115.048-.12.111l-.337 5.148.337 5.03c.005.063.057.111.12.111h.016l.489-.523v-9.243l-.489-.634zm1.383-1.077c-.074 0-.135.057-.142.131l-.31 6.225.31 5.96c.007.074.068.131.142.131h.018l.497-.532v-11.272l-.497-.643zm1.472-1.042c-.085 0-.155.066-.162.151l-.284 7.268.284 6.84c.007.085.077.151.162.151h.02l.504-.541v-13.218l-.504-.651zm1.562-.686c-.096 0-.175.075-.183.171l-.26 7.954.26 7.518c.008.096.087.171.183.171h.022l.512-.55v-14.594l-.512-.67zm1.652-.61c-.107 0-.195.084-.204.191l-.235 8.564.235 8.092c.009.107.097.191.204.191h.024l.52-.559v-15.798l-.52-.681zm1.742-.423c-.118 0-.215.093-.225.211l-.21 8.987.21 8.513c.01.118.107.211.225.211h.026l.528-.567v-16.792l-.528-.563zm10.741 2.378c-.76 0-1.479.222-2.091.605-.411-2.483-2.553-4.38-5.149-4.38-.491 0-.965.07-1.415.201-.129.038-.22.152-.228.286l-.161 10.97.161 8.802c.008.134.113.243.247.243h8.636c2.31 0 4.183-1.873 4.183-4.183 0-2.31-1.873-4.183-4.183-4.183z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-info">
+        <h3>Accès In Situ</h3>
+        <p>Scannez le QR code au point d'accueil en mairie pour lancer le parcours[cite: 1].</p>
+        <p>© 2026 Compagnie Préface — Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts : Géolocalisation & Service Worker PWA -->
+  <script>
+    // 1. Gestion de la Géolocalisation
+    const geolocAlert = document.getElementById('geolocAlert');
+    const retryGeolocBtn = document.getElementById('retryGeolocBtn');
+
+    function checkUserLocation() {
+      if (!navigator.geolocation) {
+        geolocAlert.style.display = 'flex';
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          geolocAlert.style.display = 'none';
+          // Optionnel : Recommander le village le plus proche selon les coordonnées lat/lng
+        },
+        (error) => {
+          geolocAlert.style.display = 'flex';
+        },
+        { enableHighAccuracy: true, timeout: 8000 }
+      );
+    }
+
+    checkUserLocation();
+    retryGeolocBtn.addEventListener('click', checkUserLocation);
+
+    // 2. Enregistrement du Service Worker (Accès hors-ligne PWA)
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Plateforme disponible hors-ligne !'))
+          .catch(err => console.log('Erreur Service Worker', err));
+      });
+    }
+  </script>
+</body>
+</html>

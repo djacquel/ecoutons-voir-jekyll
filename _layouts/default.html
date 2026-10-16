@@ -2,14 +2,12 @@
 <html lang="{{ page.lang | default: site.lang | default: "fr" }}">
   {%- include head.html -%}
   <body>
+  {%- include header.html -%}
   <main class="container">
-    {%- include header.html -%}
     <main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        {{ content }}
-      </div>
+      {{ content }}
     </main>
-    {%- include footer.html -%}
   </main>
+  {%- include footer.html -%}
   </body>
 </html>

@@ -3,7 +3,7 @@ layout: default
 ---
 
     {% assign pageRoot = "/balades/" | append: page.slug | append: "/"  %}
-    <h1>page.slug : {{ page.slug }} </h1>
+
     <!-- Présentation de la Commune -->
     <section class="hero-commune">
       <h1>{{ page.title }} - {{ page.departement }}</h1>
@@ -23,15 +23,29 @@ layout: default
       </header>
 
       <div class="step-media">
-        <img src="{{ pageRoot }}/img/{{ etape.image }}" alt="{{ etape.alt }}" class="step-image">
+        <img   class="step-image">
       </div>
+
+      <div class="step-media">
+        <img
+          src="{{ pageRoot }}/img/{{ etape.image }}"
+          srcset="{{ pageRoot }}/img/{{ etape.imageResponsive }} 480w,
+                  {{ pageRoot }}/img/{{ etape.image }} 1200w"
+          sizes="(max-width: 600px) 100vw, (max-width: 900px) 90vw, 900px"
+          alt="{{ etape.alt }}"
+          class="step-image"
+          decoding="async"
+          width="1000"
+          height="562">
+      </div>
+
       <div class="image-caption">
         {{ etape.alt }}
       </div>
 
       <div class="audio-player-wrapper">
-        <label for="audio-1">Écouter la création sonore</label>
-        <audio id="audio-1" controls preload="metadata">
+        <label for="audio-{{ forloop.index }}">Écouter la création sonore</label>
+        <audio id="audio-{{ forloop.index }}" controls preload="metadata">
           <source src="{{ pageRoot }}/audio/{{ etape.audio }}" type="audio/mpeg">
           Votre navigateur ne supporte pas le lecteur audio.
         </audio>
@@ -69,18 +83,6 @@ layout: default
       {% endif %}
     </article>
     {% endfor %}
-
-    <!-- Section Démarche artistique -->
-    <section class="parcours-section" id="demarche" style="background: transparent; border: none; padding: 0;">
-      <h2 style="font-family: var(--font-serif); font-size: 1.4rem; color: var(--text-main); margin-bottom: 0.5rem;">À propos du projet</h2>
-      <p class="step-text">
-        <strong>Écoutons voir</strong> est une démarche de création artistique de territoire portée par la Compagnie Préface.
-        À {{ page.title }}, habitants et artistes ont associé leurs voix et leurs photographies pour faire émerger la mémoire vivante de la commune.
-      </p>
-    </section>
-
-        <h3>Accès direct</h3>
-        <p>Scannez le QR code au centre du village pour profiter de l'écoute in situ.</p>
 
 <!-- Script OpenStreetMap (Leaflet JS) -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>

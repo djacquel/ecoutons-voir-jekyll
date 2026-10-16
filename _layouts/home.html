@@ -2,17 +2,121 @@
 layout: default
 ---
 
-<main class="container">
+    <!-- Hero / Présentation -->
+    <section class="hero">
+      <h1>Un territoire à écouter, des histoires à entendre</h1>
+      <p>Découvrez les parcours sonores et photographiques nés de la rencontre entre les habitants et la Compagnie Préface.</p>
+    </section>
 
-    <h1 class="page-heading">{{ site.title }}</h1>
+    <!-- Section 1 : Catalogue des Villages -->
+    <section class="section-block" id="villages">
+      <h2 class="section-title">Parcours par commune</h2>
 
-    <h2>Liste des balades</h2>
-<ul>
-{% for page in site.pages %}
-{% if page.path contains "balades" %}
-<li><a href="{{ page.url }}">{{ page.title }}</a></li>
-{% endif %}
-{% endfor %}
-</ul>
+      <div class="village-grid">
 
-</main>
+        <!-- Carte Sarrey -->
+        <article class="village-card">
+          <div class="village-media">
+            <img
+              src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=75"
+              srcset="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=480&q=75 480w,
+                      https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=75 800w"
+              sizes="(max-width: 600px) 100vw, 300px"
+              alt="Sarrey - Haute-Marne"
+              class="village-image"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="450">
+          </div>
+          <div class="village-content">
+            <span class="village-tag">7 Étapes • Haute-Marne</span>
+            <h3 class="village-title">Sarrey</h3>
+            <p class="village-desc">Des histoires d'eau, le grand lavoir, la coutellerie du Bassigny et les mots improvisés des habitants.</p>
+            <a href="/balades/sarrey/" class="btn-link">Explorer le parcours &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Carte Auberive -->
+        <article class="village-card">
+          <div class="village-media">
+            <img
+              src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=75"
+              srcset="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=480&q=75 480w,
+                      https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=75 800w"
+              sizes="(max-width: 600px) 100vw, 300px"
+              alt="Auberive - Haute-Marne"
+              class="village-image"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="450">
+          </div>
+          <div class="village-content">
+            <span class="village-tag">6 Étapes • Parc National des Forêts</span>
+            <h3 class="village-title">Auberive</h3>
+            <p class="village-desc">Autour de l'Abbaye cistercienne, des bords de l'Aube et du murmure des grands massifs forestiers.</p>
+            <a href="auberive.html" class="btn-link">Explorer le parcours &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Carte Commune à venir (Gabarit) -->
+        <article class="village-card" style="opacity: 0.85;">
+          <div class="village-media">
+            <img
+              src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=75"
+              alt="Commune en création"
+              class="village-image"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="450">
+          </div>
+          <div class="village-content">
+            <span class="village-tag">En création</span>
+            <h3 class="village-title">Nouvelle Commune</h3>
+            <p class="village-desc">Collecte de témoignages et ateliers photographiques en cours avec les habitants.</p>
+            <span style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">Lancement prochain</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Section 2 : Rubrique News / Actualités -->
+    <section class="section-block" id="news">
+      <h2 class="section-title">Actualités &amp; Carnet de bord</h2>
+
+      <div class="news-grid">
+
+        <article class="news-card">
+          <span class="news-date">24 Octobre 2026</span>
+          <h3 class="news-title">Inauguration du parcours sonore de Sarrey</h3>
+          <p class="news-excerpt">Rendez-vous en mairie pour une déambulation collective inaugurale suivie d'une écoute sous le préau du lavoir.</p>
+          <a href="#" class="btn-link">Lire l'article &rarr;</a>
+        </article>
+
+        <article class="news-card">
+          <span class="news-date">12 Septembre 2026</span>
+          <h3 class="news-title">Retour sur les ateliers photo à Auberive</h3>
+          <p class="news-excerpt">Pendant trois semaines, les résidents ont arpenté les ruelles et forêts pour capturer le patrimoine sensible de la commune.</p>
+          <a href="#" class="btn-link">Lire l'article &rarr;</a>
+        </article>
+
+        <article class="news-card">
+          <span class="news-date">02 Juin 2026</span>
+          <h3 class="news-title">Appel à témoignages &amp; mémoire coutelière</h3>
+          <p class="news-excerpt">La Compagnie Préface recueille souvenirs et anecdotes sur le travail de la coutellerie à domicile dans le Bassigny.</p>
+          <a href="#" class="btn-link">Lire l'article &rarr;</a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Section 3 : La Démarche -->
+    <section class="section-block" id="demarche">
+      <h2 class="section-title">La démarche « Écoutons voir »</h2>
+      <p style="margin-bottom: 1rem;">
+        <strong>Écoutons voir</strong> n'est pas un audioguide touristique traditionnel. C'est une démarche d'action artistique de territoire. La Compagnie Préface travaille en immersion dans les communes pour faire émerger la mémoire vivante, les lieux oubliés et les regards singuliers qui façonnent une identité locale.
+      </p>
+    </section>
