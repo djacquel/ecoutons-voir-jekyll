@@ -2,7 +2,7 @@
 layout: default
 ---
 
-    {% assign pageRoot = "/balades/" | append: page.slug | append: "/"  %}
+    {% assign pageRoot = site.baseurl | append: "/balades/" | append: page.slug | append: "/"  %}
 
     <!-- Présentation de la Commune -->
     <section class="hero-commune">
@@ -86,7 +86,7 @@ layout: default
 
 <!-- Script OpenStreetMap (Leaflet JS) -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="/assets/scripts.js"></script>
+<script src="{{ "/assets/scripts.js" | relative_url }}"></script>
 
 <script>
       // fonctionnement hors ligne
