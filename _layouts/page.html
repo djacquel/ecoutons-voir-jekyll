@@ -25,7 +25,9 @@ layout: default
       <div class="step-media">
         <img   class="step-image">
       </div>
-
+  <script>
+  swFiles.push('{{ pageRoot }}/img/{{ etape.image }}','{{ pageRoot }}/img/{{ etape.imageResponsive }}');
+  </script>
       <div class="step-media">
         <img
           src="{{ pageRoot }}/img/{{ etape.image }}"
@@ -50,7 +52,9 @@ layout: default
           Votre navigateur ne supporte pas le lecteur audio.
         </audio>
       </div>
-
+<script>
+swFiles.push('{{ pageRoot }}/audio/{{ etape.audio }}');
+</script>
       <div class="step-content">
         <p class="step-text">
           {{ etape.text }}

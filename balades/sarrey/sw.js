@@ -1,3 +1,5 @@
+
+
 const CACHE_NAME = 'ecoutons-voir-sarrey-v1';
 
 // Liste des ressources essentielles à pré-charger pour le mode hors-ligne
